@@ -1,0 +1,137 @@
+# 🐍 Snake Game – Excel VBA
+
+## 🎯 Objectif du projet
+
+L’objectif de ce projet est de recréer le jeu **Snake** directement dans **Excel**, en utilisant uniquement des **macros VBA** et des **cellules comme terrain de jeu**.
+
+Le projet permet de :
+- comprendre la logique des boucles
+- manipuler des conditions (`If`)
+- utiliser l’aléatoire (`Rnd`)
+- gérer un état de jeu (score, déplacement, collision)
+
+---
+
+## 🧩 Principe général du jeu
+
+Le jeu se déroule dans une **grille de cellules Excel** :
+- les cellules blanches représentent le vide
+- les cellules vertes représentent le serpent
+- la cellule avec un **"O"** est la tête du serpent
+- les cellules rouges représentent les pommes
+- les cellules jaunes sont les murs
+
+Le joueur déplace le serpent avec des boutons (haut, bas, gauche, droite).
+
+---
+
+## ▶ Démarrage du jeu – `Sub Game()`
+
+La macro `Game` sert à **lancer une nouvelle partie**.
+
+Elle fait plusieurs choses importantes :
+1. Empêche de relancer une partie déjà en cours
+2. Réinitialise le score
+3. Nettoie complètement la zone de jeu
+4. Place la tête du serpent de façon aléatoire
+5. Génère une première pomme
+
+Cette macro ne doit être exécutée **qu’une seule fois par partie**.
+
+---
+
+## 🐍 Déplacement du serpent
+
+Il existe **4 macros de déplacement** :
+- `gauche`
+- `droite`
+- `haut`
+- `bas`
+
+Chaque macro suit exactement la même logique, seule la direction change.
+
+### Étapes du déplacement :
+1. Recherche la position actuelle de la tête du serpent (`O`)
+2. Vérifie si le serpent touche un mur → arrêt
+3. Vérifie s’il se mord lui-même → partie perdue
+4. Si la case est vide → déplacement normal
+5. Si la case contient une pomme → le serpent grandit
+
+---
+
+## 🍎 Gestion des pommes
+
+Les pommes sont générées avec une macro dédiée :
+
+### `Sub genererPomme()`
+
+Cette macro :
+- choisit une position aléatoire
+- vérifie que la cellule est vide
+- place une pomme (cellule rouge)
+
+⚠️ **Règle importante** :  
+Une pomme est générée **uniquement** :
+- au début de la partie
+- quand le serpent mange une pomme
+
+Cela évite d’avoir plusieurs pommes en même temps.
+
+---
+
+## 📈 Gestion du score
+
+Le score est stocké dans la cellule :
+
+
+À chaque pomme mangée :
+- le score augmente de 1
+- la taille du serpent augmente
+
+Une macro séparée permet de réinitialiser le score :
+- `Sub reinitialiserScore()`
+
+---
+
+## 🧠 Logique de la taille du serpent
+
+La taille du serpent est gérée avec :
+- des valeurs numériques cachées dans les cellules
+- un décrément à chaque déplacement
+- suppression automatique de la queue quand la valeur atteint 0
+
+Les chiffres sont invisibles pour éviter les bugs visuels.
+
+---
+
+## ❌ Fin de partie
+
+La partie se termine lorsque :
+- le serpent touche un mur
+- le serpent se mord lui-même
+
+Un message s’affiche pour prévenir le joueur.
+
+---
+
+## ✅ Points pédagogiques importants
+
+Ce projet m’a permis de comprendre :
+- l’utilisation des boucles imbriquées
+- la gestion d’un état de jeu
+- la séparation des responsabilités (jeu, déplacement, génération)
+- l’importance du **moment où une action est déclenchée**
+
+---
+
+## 🏁 Conclusion
+
+Ce Snake en VBA montre qu’il est possible de créer un jeu fonctionnel avec :
+- des outils simples
+- une logique claire
+- une bonne organisation du code
+
+
+---
+
+🧑‍💻 Réalisé avec Excel & VBA
